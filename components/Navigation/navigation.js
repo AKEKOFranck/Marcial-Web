@@ -2,24 +2,27 @@
 
 import { useEffect, useState } from "react";
 import Image from "next/image";
-import { FaBars, FaXmark, FaCalendarCheck } from "react-icons/fa6";
+import { FaBars, FaXmark, FaWhatsapp } from "react-icons/fa6";
 import styles from "./navigation.module.css";
 
 /* ===== Données (modifie ici) ===== */
 const site = {
-  name: "Ton Coach",
-  logo: "/LogoMarcial.png",
-  logoFallback: "/LogoMarcial.svg", // utilisé si le PNG est introuvable
+  name: "FlowFit",
+  logo: "/logo-flowfit.png",
+  logoFallback: "/logo-flowfit.svg", // utilisé si le PNG est introuvable
+  whatsappNumber: "2250703059686", // même numéro que page.js
 };
 
 const navLinks = [
   { label: "Accueil", href: "#accueil" },
-  { label: "Lieux", href: "#lieux" },
+  { label: "Séances", href: "#seances" },
+  { label: "Tarifs", href: "#tarifs" },
   { label: "Le coach", href: "#coach" },
-  { label: "Objectifs", href: "#objectifs" },
   { label: "Méthode", href: "#methode" },
   { label: "FAQ", href: "#faq" },
 ];
+
+const whatsappHref = `https://wa.me/${site.whatsappNumber}`;
 
 export default function Navigation() {
   const [open, setOpen] = useState(false);
@@ -42,12 +45,18 @@ export default function Navigation() {
     };
   }, [open]);
 
-  /* Ferme le menu avec la touche Échap */
+  /* Ferme le menu avec Échap, et si on repasse en affichage desktop */
   useEffect(() => {
     if (!open) return;
     const onKey = (e) => e.key === "Escape" && setOpen(false);
+    const mq = window.matchMedia("(min-width: 901px)");
+    const onMq = (e) => e.matches && setOpen(false);
     window.addEventListener("keydown", onKey);
-    return () => window.removeEventListener("keydown", onKey);
+    mq.addEventListener("change", onMq);
+    return () => {
+      window.removeEventListener("keydown", onKey);
+      mq.removeEventListener("change", onMq);
+    };
   }, [open]);
 
   return (
@@ -74,9 +83,9 @@ export default function Navigation() {
           ))}
         </nav>
 
-        <a href="#reservation" className={styles.cta}>
-          <FaCalendarCheck aria-hidden="true" />
-          Réserver
+        <a href={whatsappHref} target="_blank" rel="noopener noreferrer" className={styles.cta}>
+          <FaWhatsapp aria-hidden="true" />
+          Nous contacter
         </a>
 
         <button
@@ -91,14 +100,20 @@ export default function Navigation() {
         </button>
       </div>
 
-      <div id="menu-mobile" className={`${styles.menu} ${open ? styles.menuOpen : ""}`}>
+      <div id="menu-mobile" className={`${styles.menu} ${open ? styles.menuOpen : ""}`} inert={!open}>
         {navLinks.map((l) => (
           <a key={l.href} href={l.href} onClick={() => setOpen(false)}>
             {l.label}
           </a>
         ))}
-        <a href="#reservation" className={styles.menuCta} onClick={() => setOpen(false)}>
-          Réserver une séance
+        <a
+          href={whatsappHref}
+          target="_blank"
+          rel="noopener noreferrer"
+          className={styles.menuCta}
+          onClick={() => setOpen(false)}
+        >
+          Nous contacter sur WhatsApp
         </a>
       </div>
     </header>

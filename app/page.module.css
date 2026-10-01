@@ -1,0 +1,678 @@
+/* ==========================================================
+   page.module.css — toutes les classes utilisées par page.js
+   Les variables (--y, --navy, --deep, --panel, --muted…)
+   viennent de globals.css
+   ========================================================== */
+
+.page {
+  background: var(--navy);
+  color: var(--white);
+  overflow-x: clip;
+}
+
+.wrap {
+  width: min(100% - 40px, var(--max-width));
+  margin: 0 auto;
+}
+
+/* ---------- Boutons ---------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  min-height: 52px;
+  padding: 0 28px;
+  background: var(--y);
+  color: var(--black);
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  transition: transform 0.25s ease, background-color 0.25s ease, box-shadow 0.25s ease;
+}
+.btn:hover {
+  background: var(--y-soft);
+  transform: translateY(-3px);
+  box-shadow: 0 12px 30px rgba(251, 191, 20, 0.2);
+}
+
+/* ---------- Titres & textes de section ---------- */
+.section {
+  padding: 110px 0;
+}
+.deep {
+  background: var(--deep);
+}
+.title {
+  font-size: clamp(38px, 5.5vw, 68px);
+  margin-bottom: 20px;
+}
+.intro {
+  max-width: 620px;
+  margin-bottom: 18px;
+  color: var(--muted);
+  font-size: 16px;
+}
+
+/* ---------- Hero ---------- */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  padding: calc(var(--header-h) + 50px) 0 70px;
+  background: radial-gradient(circle at 80% 50%, rgba(251, 191, 20, 0.09), transparent 35%), var(--navy);
+}
+.heroGrid {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  align-items: center;
+  gap: 60px;
+}
+.heroTitle {
+  display: flex;
+  flex-direction: column;
+  font-size: clamp(60px, 8vw, 108px);
+}
+.heroTitle span:last-child {
+  color: var(--y);
+}
+.heroSub {
+  margin-top: 22px;
+  color: var(--y);
+  font-size: 14px;
+  font-weight: 800;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+.heroLead {
+  max-width: 520px;
+  margin: 18px 0 30px;
+  color: var(--muted);
+  font-size: 17px;
+}
+.heroActions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 22px;
+}
+.play {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 13px;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+.playIcon {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  font-size: 12px;
+  transition: border-color 0.25s ease, color 0.25s ease;
+}
+.play:hover .playIcon {
+  border-color: var(--y);
+  color: var(--y);
+}
+.heroSocials {
+  display: flex;
+  gap: 12px;
+  margin-top: 34px;
+  list-style: none;
+}
+.heroSocials a {
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  background: var(--panel);
+  color: var(--white);
+  transition: background-color 0.25s ease, color 0.25s ease;
+}
+.heroSocials a:hover {
+  background: var(--y);
+  color: var(--black);
+}
+
+/* Visuel hero : parent de l'image (position: relative + hauteur obligatoires avec fill) */
+.heroVisual {
+  position: relative;
+  min-height: 560px;
+}
+.brush {
+  position: absolute;
+  inset: 8% -4% -4% 8%;
+  background: var(--y);
+  transform: rotate(3deg);
+  opacity: 0.9;
+}
+.heroPhoto {
+  object-fit: cover;
+  object-position: center top;
+}
+
+/* ---------- Bandeau défilant ---------- */
+.ticker {
+  overflow: hidden;
+  background: var(--y);
+  color: var(--black);
+  padding: 14px 0;
+}
+.track {
+  display: flex;
+  width: max-content;
+  animation: scroll 35s linear infinite;
+}
+.tickerItem {
+  display: inline-flex;
+  align-items: center;
+  gap: 22px;
+  padding-right: 22px;
+  font-family: var(--font-title);
+  font-size: 22px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+@keyframes scroll {
+  to { transform: translateX(-50%); }
+}
+
+/* ---------- Chiffres ---------- */
+.stats {
+  background: var(--panel);
+}
+.statsGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+}
+.stat {
+  padding: 44px 24px;
+  text-align: center;
+  border-right: 1px solid rgba(255, 255, 255, 0.08);
+}
+.stat:last-child {
+  border-right: none;
+}
+.statValue {
+  display: block;
+  color: var(--y);
+  font-family: var(--font-title);
+  font-size: 58px;
+  font-weight: 400;
+  line-height: 1;
+}
+.statLabel {
+  display: block;
+  margin-top: 10px;
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+}
+
+/* ---------- Lieux (panneaux accordéon) ---------- */
+.panels {
+  display: flex;
+  gap: 10px;
+  height: 440px;
+  margin-top: 40px;
+}
+.panel {
+  position: relative;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  gap: 8px;
+  padding: 28px;
+  overflow: hidden;
+  background: var(--panel);
+  color: var(--white);
+  text-align: left;
+  transition: flex 0.5s ease;
+}
+.panelOn {
+  flex: 3;
+}
+.panelImg {
+  object-fit: cover;
+  z-index: 0;
+  transition: transform 0.6s ease;
+}
+.panelOn .panelImg {
+  transform: scale(1.04);
+}
+.panel::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(to top, rgba(15, 17, 26, 0.92) 5%, rgba(15, 17, 26, 0.25) 70%);
+}
+.panelIcon,
+.panelTitle,
+.panelText {
+  position: relative;
+  z-index: 2;
+}
+.panelIcon {
+  display: grid;
+  place-items: center;
+  width: 46px;
+  height: 46px;
+  background: var(--y);
+  color: var(--black);
+  font-size: 20px;
+}
+.panelTitle {
+  font-family: var(--font-title);
+  font-size: 30px;
+  text-transform: uppercase;
+}
+.panelText {
+  max-width: 420px;
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  color: var(--gray-light);
+  font-size: 14px;
+  line-height: 1.6;
+  transition: max-height 0.5s ease, opacity 0.4s ease;
+}
+.panelOn .panelText {
+  max-height: 120px;
+  opacity: 1;
+}
+
+/* ---------- Le coach ---------- */
+.aboutGrid {
+  display: grid;
+  grid-template-columns: 0.9fr 1.1fr;
+  align-items: center;
+  gap: 70px;
+}
+.aboutVisual {
+  position: relative;
+  min-height: 520px;
+}
+.aboutBrush {
+  position: absolute;
+  inset: -4% 8% 8% -4%;
+  background: var(--y);
+  transform: rotate(-3deg);
+}
+.aboutPhoto {
+  object-fit: cover;
+  object-position: center top;
+}
+.specs {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px 24px;
+  margin-top: 26px;
+  list-style: none;
+}
+.specs li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 14px;
+  font-weight: 600;
+}
+.specs svg {
+  flex-shrink: 0;
+  color: var(--y);
+}
+
+/* ---------- Objectifs ---------- */
+.goals {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2px;
+  margin-top: 44px;
+  list-style: none;
+}
+.goal {
+  padding: 36px;
+  background: var(--panel);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+.goal:hover {
+  background: var(--y);
+  color: var(--black);
+}
+.goalIcon {
+  font-size: 30px;
+  color: var(--y);
+}
+.goal:hover .goalIcon {
+  color: var(--black);
+}
+.goalTitle {
+  margin: 38px 0 12px;
+  font-size: 30px;
+}
+.goalText {
+  color: var(--muted);
+  font-size: 14px;
+}
+.goal:hover .goalText {
+  color: rgba(10, 10, 10, 0.75);
+}
+
+/* ---------- Méthode (rounds) ---------- */
+.rounds {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  margin-top: 44px;
+  list-style: none;
+}
+.round {
+  padding: 28px 24px;
+  background: var(--panel);
+  border-top: 3px solid var(--y);
+}
+.round p {
+  color: var(--muted);
+  font-size: 14px;
+}
+.roundNum {
+  display: block;
+  margin-bottom: 18px;
+  color: var(--y);
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+}
+.roundIcon {
+  font-size: 28px;
+  color: var(--white);
+}
+.roundTitle {
+  margin: 16px 0 10px;
+  font-size: 26px;
+}
+
+/* ---------- Témoignages ---------- */
+.quotes {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+  margin-top: 44px;
+}
+.quote {
+  padding: 32px;
+  background: var(--panel);
+}
+.quoteIcon {
+  color: var(--y);
+  font-size: 24px;
+}
+.quote blockquote {
+  margin: 18px 0 20px;
+  color: var(--gray-light);
+  font-size: 15px;
+  line-height: 1.7;
+}
+.quote figcaption {
+  color: var(--y);
+  font-size: 13px;
+  font-weight: 700;
+}
+
+/* ---------- Galerie ---------- */
+.galleryWrap {
+  padding-bottom: 110px;
+}
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 4px;
+}
+.shot {
+  position: relative;
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+  background: var(--panel);
+}
+.shotImg {
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+.shot:hover .shotImg {
+  transform: scale(1.06);
+}
+.shot figcaption {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  z-index: 1;
+  padding: 8px 14px;
+  background: var(--y);
+  color: var(--black);
+  font-size: 11px;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+/* ---------- FAQ ---------- */
+.faqWrap {
+  max-width: 860px;
+}
+.faqList {
+  margin-top: 36px;
+}
+.faqItem {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+.faqQ {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  width: 100%;
+  padding: 22px 0;
+  background: none;
+  color: var(--white);
+  font-size: 17px;
+  font-weight: 600;
+  text-align: left;
+}
+.faqQ svg {
+  flex-shrink: 0;
+  color: var(--y);
+}
+.faqA {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.35s ease;
+}
+.faqA p {
+  min-height: 0;
+  overflow: hidden;
+  color: var(--muted);
+}
+.faqOpen .faqA {
+  grid-template-rows: 1fr;
+}
+.faqOpen .faqA p {
+  padding-bottom: 22px;
+}
+
+/* ---------- Réservation ---------- */
+.bookGrid {
+  display: grid;
+  grid-template-columns: 0.9fr 1.1fr;
+  align-items: start;
+  gap: 60px;
+}
+.contactList {
+  display: grid;
+  gap: 14px;
+  margin-top: 28px;
+  list-style: none;
+}
+.contactList a {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  font-weight: 600;
+  transition: color 0.2s ease;
+}
+.contactList a:hover {
+  color: var(--y);
+}
+.contactList svg {
+  color: var(--y);
+}
+
+.card {
+  display: grid;
+  gap: 22px;
+  padding: 36px;
+  background: var(--panel);
+}
+.field {
+  display: grid;
+  gap: 10px;
+  border: none;
+}
+.label {
+  padding: 0;
+  font-size: 13px;
+  font-weight: 700;
+}
+.input {
+  width: 100%;
+  padding: 14px 16px;
+  background: var(--navy);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: var(--white);
+  font-size: 15px;
+  resize: vertical;
+}
+.input:focus-visible {
+  outline: 2px solid var(--y);
+  outline-offset: 1px;
+}
+.input[aria-invalid="true"] {
+  border-color: #ff6b6b;
+}
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.chip {
+  padding: 10px 16px;
+  background: var(--navy);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  color: var(--gray-light);
+  font-size: 13px;
+  font-weight: 600;
+  transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+.chip:hover {
+  border-color: var(--y);
+}
+.chipOn {
+  background: var(--y);
+  border-color: var(--y);
+  color: var(--black);
+}
+.error {
+  color: #ff8a8a;
+  font-size: 13px;
+  line-height: 1.4;
+}
+.submit {
+  width: 100%;
+}
+.sent {
+  color: var(--y);
+  font-size: 14px;
+  text-align: center;
+}
+
+/* ---------- Bouton fixe mobile ---------- */
+.mobileBar {
+  display: none;
+}
+
+/* ---------- Mouvement réduit ---------- */
+@media (prefers-reduced-motion: reduce) {
+  .track { animation: none; }
+  .panel, .panelImg, .panelText, .faqA, .shotImg { transition: none; }
+}
+
+/* ---------- Tablette ---------- */
+@media (max-width: 900px) {
+  .section { padding: 80px 0; }
+
+  .heroGrid,
+  .aboutGrid,
+  .bookGrid { grid-template-columns: 1fr; gap: 44px; }
+
+  .hero { min-height: auto; }
+  .heroVisual { min-height: 440px; }
+  .aboutVisual { min-height: 440px; }
+
+  .goals,
+  .quotes { grid-template-columns: 1fr; }
+  .rounds { grid-template-columns: repeat(2, 1fr); }
+  .gallery { grid-template-columns: repeat(2, 1fr); }
+
+  .panels { flex-direction: column; height: auto; }
+  .panel { flex: none; height: 110px; transition: height 0.5s ease; }
+  .panelOn { flex: none; height: 300px; }
+}
+
+/* ---------- Mobile ---------- */
+@media (max-width: 600px) {
+  .wrap { width: min(100% - 30px, var(--max-width)); }
+
+  .heroActions { flex-direction: column; align-items: stretch; }
+  .heroActions .btn { width: 100%; }
+  .play { justify-content: center; }
+
+  .statsGrid { grid-template-columns: 1fr; }
+  .stat {
+    padding: 28px 20px;
+    border-right: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  }
+  .stat:last-child { border-bottom: none; }
+
+  .rounds,
+  .specs { grid-template-columns: 1fr; }
+  .card { padding: 24px 20px; }
+
+  .page { padding-bottom: 76px; }
+  .mobileBar {
+    position: fixed;
+    left: 15px;
+    right: 15px;
+    bottom: 15px;
+    z-index: 900;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    min-height: 52px;
+    background: var(--y);
+    color: var(--black);
+    font-size: 12px;
+    font-weight: 800;
+    text-transform: uppercase;
+    box-shadow: 0 10px 35px rgba(0, 0, 0, 0.4);
+  }
+}

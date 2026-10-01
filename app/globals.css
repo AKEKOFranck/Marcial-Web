@@ -1,0 +1,120 @@
+@import url("https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700;800&display=swap");
+
+/* =========================
+   VARIABLES
+========================= */
+
+:root {
+  --black: #0a0a0a;
+  --white: #ffffff;
+  --gray: #a5a5a5;
+  --gray-light: #d6d6d6;
+
+  /* Palette bleu nuit + jaune (maquette) */
+  --navy: #171a26;
+  --deep: #0f111a;
+  --panel: #222637;
+  --y: #fbbf14;
+  --y-soft: #ffd24a;
+  --muted: #9aa0b4;
+
+  --max-width: 1200px;
+  --header-h: 76px;
+
+  --font-title: "Anton", sans-serif;
+  --font-body: "Inter", sans-serif;
+}
+
+/* =========================
+   RESET
+========================= */
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--navy);
+  color: var(--white);
+  font-family: var(--font-body);
+  overflow-x: hidden;
+}
+
+button,
+input,
+textarea,
+select {
+  font-family: inherit;
+}
+
+button,
+a {
+  -webkit-tap-highlight-color: transparent;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  border: none;
+  cursor: pointer;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+::selection {
+  background: var(--y);
+  color: var(--black);
+}
+
+:focus-visible {
+  outline: 2px solid var(--y);
+  outline-offset: 2px;
+}
+
+/* =========================
+   TYPOGRAPHIE
+========================= */
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-title);
+  font-weight: 400;
+  text-transform: uppercase;
+  line-height: 0.95;
+  letter-spacing: 0.5px;
+}
+
+p {
+  line-height: 1.7;
+}
+
+/* =========================
+   SCROLLBAR
+========================= */
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--navy);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--y);
+  border-radius: 10px;
+}

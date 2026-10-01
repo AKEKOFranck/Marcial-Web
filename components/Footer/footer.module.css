@@ -1,0 +1,103 @@
+.footer {
+  background: var(--deep);
+  border-top: 4px solid var(--y);
+  padding: 64px 24px 28px;
+}
+
+.inner {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1.6fr 1fr;
+  gap: 40px;
+  padding-bottom: 44px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.logo {
+  width: auto;
+  height: 46px;
+}
+
+.brand p {
+  max-width: 340px;
+  margin-top: 18px;
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.contact {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 16px;
+}
+
+.contactTitle {
+  color: var(--muted);
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.socials {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  list-style: none;
+}
+
+.socials a {
+  width: 46px;
+  height: 46px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  font-size: 18px;
+  transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+
+.socials a:hover {
+  background: var(--y);
+  border-color: var(--y);
+  color: var(--deep);
+}
+
+.bottom {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding-top: 24px;
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.bottom a:hover {
+  color: var(--y);
+}
+
+.footer a:focus-visible {
+  outline: 2px solid var(--y);
+  outline-offset: 3px;
+}
+
+@media (max-width: 800px) {
+  .inner {
+    grid-template-columns: 1fr;
+  }
+
+  .contact {
+    align-items: flex-start;
+  }
+
+  .footer {
+    padding-bottom: 96px; /* laisse la place au bouton fixe mobile */
+  }
+
+  .bottom {
+    flex-direction: column;
+  }
+}

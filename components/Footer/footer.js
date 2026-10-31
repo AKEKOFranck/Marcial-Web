@@ -1,28 +1,76 @@
 import Image from "next/image";
-import { FaPhone, FaWhatsapp, FaInstagram, FaTiktok, FaFacebook } from "react-icons/fa6";
+import {
+  FaPhone,
+  FaMobileScreenButton,
+  FaWhatsapp,
+  FaInstagram,
+  FaTiktok,
+  FaFacebook,
+} from "react-icons/fa6";
 import styles from "./footer.module.css";
 
 /* ===== Données (modifie ici) ===== */
 const site = {
-  name: "Ton Coach",
+  name: "Coach Marcial",
   role: "Coach sportif",
   logo: "/LogoMarcial.svg",
-  whatsappNumber: "2250700000000", // format international, sans + ni espaces (jamais affiché)
+  whatsappNumber: "2250703059686", // format international, sans + ni espaces
   year: new Date().getFullYear(),
 };
 
-const socials = [
-  { label: "WhatsApp", icon: FaWhatsapp, href: `https://wa.me/${site.whatsappNumber}` },
-  { label: "Instagram", icon: FaInstagram, href: "" }, // vide = masqué
-  { label: "TikTok", icon: FaTiktok, href: "" },
-  { label: "Facebook", icon: FaFacebook, href: "" },
+/* external: true = s'ouvre dans un nouvel onglet (les liens tel: restent dans la page) */
+const contacts = [
+  {
+    label: "Appeler le coach (ligne 1)",
+    icon: FaPhone,
+    href: "tel:+2250703059686",
+    external: false,
+  },
+  {
+    label: "Appeler le coach (ligne 2)",
+    icon: FaMobileScreenButton,
+    href: "tel:+2250759513028",
+    external: false,
+  },
+  {
+    label: "WhatsApp",
+    icon: FaWhatsapp,
+    href: `https://wa.me/${site.whatsappNumber}`,
+    external: true,
+  },
+  {
+    label: "Instagram",
+    icon: FaInstagram,
+    href: "https://www.instagram.com/invites/contact/?utm_content=z9cvx0d&psln=yankkfv1tlzh",
+    external: true,
+  },
+  {
+    label: "TikTok",
+    icon: FaTiktok,
+    href: "https://www.tiktok.com/@coachmarcial1",
+    external: true,
+  },
+  {
+    label: "Facebook",
+    icon: FaFacebook,
+    href: "https://www.facebook.com/Coachmarcial1/",
+    external: true,
+  },
+];
+
+const navLinks = [
+  { label: "Séances", href: "/#seances" },
+  { label: "Tarifs", href: "/#tarifs" },
+  { label: "Le coach", href: "/#coach" },
+  { label: "FAQ", href: "/#faq" },
+  { label: "Réserver", href: "/#reservation" },
 ];
 
 export default function Footer() {
-  const links = socials.filter((s) => s.href);
+  const items = contacts.filter((c) => c.href); // href vide = masqué
 
   return (
-    <footer className={styles.footer}>
+    <footer id="contact" className={styles.footer}>
       <div className={styles.inner}>
         <div className={styles.brand}>
           <Image
@@ -38,17 +86,30 @@ export default function Footer() {
           </p>
         </div>
 
+        <nav aria-label="Pied de page">
+          <p className={styles.contactTitle}>Navigation</p>
+          <ul className={styles.navList}>
+            {navLinks.map((l) => (
+              <li key={l.href}>
+                <a href={l.href}>{l.label}</a>
+              </li>
+            ))}
+          </ul>
+        </nav>
+
         <div className={styles.contact}>
           <p className={styles.contactTitle}>Contacte-moi</p>
           <ul className={styles.socials}>
-            <li>
-              <a href={`tel:+${site.whatsappNumber}`} aria-label="Appeler le coach">
-                <FaPhone aria-hidden="true" />
-              </a>
-            </li>
-            {links.map(({ label, icon: Icon, href }) => (
+            {items.map(({ label, icon: Icon, href, external }) => (
               <li key={label}>
-                <a href={href} target="_blank" rel="noopener noreferrer" aria-label={label}>
+                <a
+                  href={href}
+                  aria-label={label}
+                  title={label}
+                  {...(external
+                    ? { target: "_blank", rel: "noopener noreferrer" }
+                    : {})}
+                >
                   <Icon aria-hidden="true" />
                 </a>
               </li>

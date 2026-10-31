@@ -1,19 +1,47 @@
+/* ==========================================================
+   FOOTER
+========================================================== */
+
 .footer {
   background: var(--deep);
   border-top: 4px solid var(--y);
   padding: 64px 24px 28px;
+  scroll-margin-top: var(--header-h);
 }
 
+.footer a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.footer ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* ----- Grille principale : marque | navigation | contact ----- */
 .inner {
   max-width: var(--max-width);
   margin: 0 auto;
   display: grid;
-  grid-template-columns: 1.6fr 1fr;
+  grid-template-columns: 1.6fr 1fr 1.2fr;
   gap: 40px;
   padding-bottom: 44px;
   border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 }
 
+/* ----- Titres de colonnes ----- */
+.contactTitle {
+  margin: 0 0 16px;
+  color: var(--muted);
+  font-size: 13px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+/* ----- Marque ----- */
 .logo {
   width: auto;
   height: 46px;
@@ -21,29 +49,43 @@
 
 .brand p {
   max-width: 340px;
-  margin-top: 18px;
+  margin: 18px 0 0;
   color: var(--muted);
   font-size: 14px;
+  line-height: 1.6;
 }
 
+/* ----- Navigation ----- */
+.navList {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.navList a {
+  color: #fff;
+  font-size: 14px;
+  font-weight: 600;
+  transition: color 0.2s ease;
+}
+
+.navList a:hover {
+  color: var(--y);
+}
+
+/* ----- Contact (icônes uniquement) ----- */
 .contact {
   display: flex;
   flex-direction: column;
   align-items: flex-end;
-  gap: 16px;
-}
-
-.contactTitle {
-  color: var(--muted);
-  font-size: 13px;
-  font-weight: 600;
 }
 
 .socials {
   display: flex;
   flex-wrap: wrap;
+  justify-content: flex-end;
   gap: 12px;
-  list-style: none;
+  max-width: 220px; /* 3 icônes par ligne : rangée propre sur 2 lignes */
 }
 
 .socials a {
@@ -54,50 +96,113 @@
   justify-content: center;
   border: 1px solid rgba(255, 255, 255, 0.2);
   border-radius: 50%;
+  color: #fff;
   font-size: 18px;
-  transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease,
+    border-color 0.2s ease,
+    transform 0.2s ease;
+}
+
+/* Les deux icônes d'appel ressortent en jaune */
+.socials li:nth-child(-n + 2) a {
+  color: var(--y);
+  border-color: var(--y);
 }
 
 .socials a:hover {
   background: var(--y);
   border-color: var(--y);
   color: var(--deep);
+  transform: translateY(-2px);
 }
 
+/* ----- Bas de page ----- */
 .bottom {
   max-width: var(--max-width);
   margin: 0 auto;
   padding-top: 24px;
   display: flex;
   justify-content: space-between;
+  align-items: center;
   gap: 16px;
   color: var(--muted);
   font-size: 12px;
+}
+
+.bottom p {
+  margin: 0;
+}
+
+.bottom a {
+  transition: color 0.2s ease;
 }
 
 .bottom a:hover {
   color: var(--y);
 }
 
+/* ----- Accessibilité ----- */
 .footer a:focus-visible {
   outline: 2px solid var(--y);
   outline-offset: 3px;
+  border-radius: 4px;
 }
 
+.socials a:focus-visible {
+  border-radius: 50%;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .socials a,
+  .navList a,
+  .bottom a {
+    transition: none;
+  }
+
+  .socials a:hover {
+    transform: none;
+  }
+}
+
+/* ==========================================================
+   RESPONSIVE
+========================================================== */
+
+/* Tablette : marque en pleine largeur, navigation et contact côte à côte */
+@media (max-width: 1000px) {
+  .inner {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .brand {
+    grid-column: 1 / -1;
+  }
+}
+
+/* Mobile : une seule colonne, tout aligné à gauche */
 @media (max-width: 800px) {
+  .footer {
+    padding: 48px 20px 96px; /* laisse la place au bouton fixe mobile */
+  }
+
   .inner {
     grid-template-columns: 1fr;
+    gap: 32px;
   }
 
   .contact {
     align-items: flex-start;
   }
 
-  .footer {
-    padding-bottom: 96px; /* laisse la place au bouton fixe mobile */
+  .socials {
+    justify-content: flex-start;
+    max-width: none;
   }
 
   .bottom {
     flex-direction: column;
+    align-items: flex-start;
   }
 }

@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import {
   FaPlay, FaBolt, FaCalendarCheck, FaCheck, FaQuoteLeft, FaPlus, FaMinus,
-  FaWhatsapp, FaPhone, FaInstagram, FaTiktok, FaFacebook,
+  FaWhatsapp,
   FaHouse, FaVideo, FaTrophy, FaDumbbell, FaFire, FaHeartPulse, FaBullseye,
   FaPersonRunning, FaChartLine, FaLightbulb, FaClipboardList, FaUserCheck, FaClock,
 } from "react-icons/fa6";
@@ -12,33 +12,21 @@ import styles from "./page.module.css";
 
 /* ==========================================================
    DONNÉES — modifie les valeurs ici
+   (numéros et réseaux sociaux : uniquement dans le footer)
 ========================================================== */
 
 const site = {
   name: "FlowFit",
-  coach: "Coach Martial",
-  tagline: "Bouge. Progresse. Réussis.",
-  logo: "/logo-flowfit.png",
-  whatsappNumber: "2250703059686", // format international, sans + ni espaces
-  phones: [
-    { display: "+225 07 03 05 96 86", tel: "+2250703059686" },
-    { display: "+225 07 59 51 30 28", tel: "+2250759513028" },
-  ],
+  coach: "Coach Marcial",
+  whatsappNumber: "2250703059686", // format international, sans + ni espaces (jamais affiché)
 };
 
 const waLink = (text) =>
   `https://wa.me/${site.whatsappNumber}${text ? `?text=${encodeURIComponent(text)}` : ""}`;
 
-const socials = [
-  { label: "WhatsApp", icon: FaWhatsapp, href: waLink() },
-  { label: "Instagram", icon: FaInstagram, href: "https://instagram.com/flowfit" }, // à vérifier
-  { label: "TikTok", icon: FaTiktok, href: "https://tiktok.com/@flowfit" }, // à vérifier
-  { label: "Facebook", icon: FaFacebook, href: "" }, // vide = masqué
-];
-
 const hero = {
   titleLines: ["Ton objectif,", "notre mission"],
-  subtitle: "Avec Coach Martial",
+  subtitle: "Avec Coach Marcial",
   text: "Des séances à domicile ou en ligne, construites autour de ton objectif et de ton rythme. Entraîne-toi où tu veux, quand tu veux.",
   cta: "Commencer maintenant",
   secondary: "Voir la méthode",
@@ -47,8 +35,8 @@ const hero = {
     { icon: FaVideo, label: "Séances vidéo en ligne" },
     { icon: FaTrophy, label: "Résultats concrets" },
   ],
-  image: "/images/hero.jpg",
-  imageAlt: "Coach Martial en séance d'entraînement",
+  image: "/main.jpg",
+  imageAlt: "Coach Marcial en séance d'entraînement",
 };
 
 const ticker = ["Cardio", "Abdos", "Perte de poids", "Prise de masse", "À domicile", "En ligne"];
@@ -129,7 +117,7 @@ const plans = [
   },
   {
     name: "Accompagnement", icon: FaUserCheck, tag: "Séances en appel vidéo", price: "50 000",
-    features: ["Séances en direct avec Coach Martial", "Suivi, motivation et conseils", "Programme ajusté selon tes progrès"],
+    features: ["Séances en direct avec Coach Marcial", "Suivi, motivation et conseils", "Programme ajusté selon tes progrès"],
   },
   {
     name: "Premium", icon: FaHouse, tag: "Coaching à domicile", price: "100 000",
@@ -138,8 +126,8 @@ const plans = [
 ];
 
 const about = {
-  title: "Coach Martial",
-  image: "/images/coach.jpg",
+  title: "Coach Marcial",
+  image: "/main1.jpg",
   paragraphs: [
     "Je t'accompagne, quel que soit ton niveau, vers des résultats qui durent.",
     "Chaque programme est adapté à ton corps, ton emploi du temps et tes objectifs.",
@@ -162,10 +150,10 @@ const testimonials = [
 ];
 
 const gallery = [
-  { label: "Cardio", src: "/images/galerie-1.jpg" },
-  { label: "Abdos", src: "/images/galerie-2.jpg" },
-  { label: "Force", src: "/images/galerie-3.jpg" },
-  { label: "En ligne", src: "/images/galerie-4.jpg" },
+  { label: "Cardio", src: "/cardioIMG.jpg" },
+  { label: "Abdos", src: "/abdosPIC.jpg" },
+  { label: "Force", src: "/forceIMG.jpg" },
+  { label: "En ligne", src: "/onlineIMG.jpg" },
 ];
 
 const faq = [
@@ -185,14 +173,6 @@ const bookingForm = {
   plans: plans.map((p) => p.name),
   slots: ["Matin", "Après-midi", "Soir", "Week-end"],
 };
-
-const footerLinks = [
-  { label: "Séances", href: "#seances" },
-  { label: "Tarifs", href: "#tarifs" },
-  { label: "Le coach", href: "#coach" },
-  { label: "FAQ", href: "#faq" },
-  { label: "Réserver", href: "#reservation" },
-];
 
 /* ==========================================================
    COMPOSANTS
@@ -311,8 +291,6 @@ export default function Home() {
     setSent(true);
   };
 
-  const socialLinks = socials.filter((s) => s.href);
-
   return (
     <main className={styles.page}>
       {/* ===== Accueil ===== */}
@@ -353,15 +331,6 @@ export default function Home() {
                 {hero.secondary}
               </a>
             </div>
-            <ul className={styles.heroSocials}>
-              {socialLinks.map(({ label, icon: Icon, href }) => (
-                <li key={label}>
-                  <a href={href} target="_blank" rel="noopener noreferrer" aria-label={label}>
-                    <Icon />
-                  </a>
-                </li>
-              ))}
-            </ul>
           </div>
 
           <div className={styles.heroVisual}>
@@ -419,7 +388,11 @@ export default function Home() {
               return (
                 <article key={p.id} className={styles.program}>
                   <div className={styles.programHead}>
-                    <Photo src={p.image} className={styles.programImg} sizes="(max-width: 600px) 100vw, (max-width: 1100px) 50vw, 25vw" />
+                    <Photo
+                      src={p.image}
+                      className={styles.programImg}
+                      sizes="(max-width: 600px) 100vw, (max-width: 1100px) 50vw, 25vw"
+                    />
                     <span className={styles.programIcon}>
                       <Icon aria-hidden="true" />
                     </span>
@@ -517,7 +490,12 @@ export default function Home() {
         <div className={`${styles.wrap} ${styles.aboutGrid}`}>
           <div className={styles.aboutVisual}>
             <span className={styles.aboutBrush} aria-hidden="true" />
-            <Photo src={about.image} alt={about.title} className={styles.aboutPhoto} sizes="(max-width: 900px) 100vw, 45vw" />
+            <Photo
+              src={about.image}
+              alt={about.title}
+              className={styles.aboutPhoto}
+              sizes="(max-width: 900px) 100vw, 45vw"
+            />
           </div>
           <div>
             <h2 className={styles.title}>{about.title}</h2>
@@ -623,29 +601,10 @@ export default function Home() {
           <div>
             <h2 className={styles.title}>{bookingForm.title}</h2>
             <p className={styles.intro}>{bookingForm.text}</p>
-            <ul className={styles.contactList}>
-              <li>
-                <a href={waLink()} target="_blank" rel="noopener noreferrer">
-                  <FaWhatsapp aria-hidden="true" /> WhatsApp
-                </a>
-              </li>
-              {site.phones.map((ph) => (
-                <li key={ph.tel}>
-                  <a href={`tel:${ph.tel}`}>
-                    <FaPhone aria-hidden="true" /> {ph.display}
-                  </a>
-                </li>
-              ))}
-              {socialLinks
-                .filter((s) => s.label !== "WhatsApp")
-                .map(({ label, icon: Icon, href }) => (
-                  <li key={label}>
-                    <a href={href} target="_blank" rel="noopener noreferrer">
-                      <Icon aria-hidden="true" /> {label}
-                    </a>
-                  </li>
-                ))}
-            </ul>
+            <p className={styles.intro}>
+              Une question ? Mes contacts sont en bas de page :{" "}
+              <a href="#contact">voir les contacts</a>.
+            </p>
           </div>
 
           <form className={styles.card} onSubmit={submit} noValidate>
@@ -711,26 +670,6 @@ export default function Home() {
           </form>
         </div>
       </section>
-
-      {/* ===== Pied de page ===== */}
-      <footer className={styles.footer}>
-        <div className={`${styles.wrap} ${styles.footerGrid}`}>
-          <div className={styles.footerBrand}>
-            <Image src={site.logo} alt={site.name} width={140} height={44} />
-            <p>{site.tagline}</p>
-          </div>
-          <nav aria-label="Pied de page">
-            <ul className={styles.footerLinks}>
-              {footerLinks.map((l) => (
-                <li key={l.href}>
-                  <a href={l.href}>{l.label}</a>
-                </li>
-              ))}
-            </ul>
-          </nav>
-          <p className={styles.copy}>© {new Date().getFullYear()} {site.name}. Tous droits réservés.</p>
-        </div>
-      </footer>
 
       {/* Bouton fixe sur mobile */}
       <a href="#reservation" className={styles.mobileBar}>

@@ -1,8 +1,8 @@
 /* ==========================================================
-   page.module.css — FlowFit
+   page.module.css — Coach Marcial
    Noir + Vert néon
 
-   Variables attendues dans globals.css :
+   Variables attendues dans globals.css (:root) :
    --y, --y-soft, --navy, --deep, --panel, --muted, --white,
    --black, --gray-light, --max-width, --header-h, --font-title
    ========================================================== */
@@ -34,23 +34,26 @@
   font-size: 13px;
   font-weight: 800;
   letter-spacing: 0.5px;
+  text-align: center;
   text-transform: uppercase;
+  text-decoration: none;
+  cursor: pointer;
   transition:
     transform 0.25s ease,
     background-color 0.25s ease,
     box-shadow 0.25s ease;
 }
 
-.btn:hover {
-  background: var(--y-soft);
-  transform: translateY(-3px);
-  box-shadow: 0 12px 30px rgba(140, 255, 31, 0.22);
+.btn:active {
+  transform: translateY(0) scale(0.98);
 }
 
 .btn:focus-visible,
 .chip:focus-visible,
 .faqQ:focus-visible,
-.panel:focus-visible {
+.play:focus-visible,
+.mobileBar:focus-visible,
+.intro a:focus-visible {
   outline: 2px solid var(--y);
   outline-offset: 3px;
 }
@@ -60,7 +63,7 @@
    ========================================================== */
 
 .section {
-  padding: 110px 0;
+  padding: clamp(65px, 9vw, 110px) 0;
   scroll-margin-top: var(--header-h);
 }
 
@@ -70,7 +73,9 @@
 
 .title {
   margin-bottom: 20px;
-  font-size: clamp(38px, 5.5vw, 68px);
+  font-size: clamp(36px, 5.5vw, 68px);
+  line-height: 1;
+  text-wrap: balance;
 }
 
 .intro {
@@ -78,6 +83,14 @@
   margin-bottom: 18px;
   color: var(--muted);
   font-size: 16px;
+  line-height: 1.65;
+}
+
+.intro a {
+  color: var(--y);
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 3px;
 }
 
 /* ==========================================================
@@ -85,16 +98,13 @@
    ========================================================== */
 
 .hero {
-  min-height: 100vh;
   display: flex;
   align-items: center;
+  min-height: 100vh;
+  min-height: 100svh;
   padding: calc(var(--header-h) + 50px) 0 70px;
   background:
-    radial-gradient(
-      circle at 80% 50%,
-      rgba(140, 255, 31, 0.12),
-      transparent 38%
-    ),
+    radial-gradient(circle at 80% 50%, rgba(140, 255, 31, 0.12), transparent 38%),
     var(--navy);
 }
 
@@ -102,18 +112,18 @@
   display: grid;
   grid-template-columns: 1.1fr 0.9fr;
   align-items: center;
-  gap: 60px;
+  gap: clamp(32px, 5vw, 60px);
 }
 
 .heroBrand {
   display: flex;
   flex-wrap: wrap;
   align-items: baseline;
-  gap: 14px;
+  gap: 6px 14px;
   margin-bottom: 18px;
   color: var(--white);
   font-family: var(--font-title);
-  font-size: 26px;
+  font-size: clamp(20px, 2.4vw, 26px);
   letter-spacing: 1px;
   text-transform: uppercase;
 }
@@ -129,7 +139,8 @@
 .heroTitle {
   display: flex;
   flex-direction: column;
-  font-size: clamp(54px, 7.4vw, 100px);
+  font-size: clamp(46px, 7.4vw, 100px);
+  line-height: 0.98;
 }
 
 .heroTitle span:last-child {
@@ -140,7 +151,8 @@
   max-width: 520px;
   margin: 20px 0 22px;
   color: var(--muted);
-  font-size: 17px;
+  font-size: clamp(15px, 1.5vw, 17px);
+  line-height: 1.65;
 }
 
 .pills {
@@ -163,6 +175,7 @@
 }
 
 .pills svg {
+  flex-shrink: 0;
   color: var(--y);
 }
 
@@ -170,7 +183,7 @@
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: 22px;
+  gap: 18px 24px;
 }
 
 .play {
@@ -180,6 +193,7 @@
   font-size: 13px;
   font-weight: 700;
   text-transform: uppercase;
+  text-decoration: none;
 }
 
 .playIcon {
@@ -200,36 +214,11 @@
   color: var(--y);
 }
 
-.heroSocials {
-  display: flex;
-  gap: 12px;
-  margin-top: 34px;
-  padding: 0;
-  list-style: none;
-}
-
-.heroSocials a {
-  display: grid;
-  place-items: center;
-  width: 40px;
-  height: 40px;
-  background: var(--panel);
-  color: var(--white);
-  transition:
-    background-color 0.25s ease,
-    color 0.25s ease;
-}
-
-.heroSocials a:hover {
-  background: var(--y);
-  color: var(--black);
-}
-
 /* Image hero */
 
 .heroVisual {
   position: relative;
-  min-height: 560px;
+  min-height: clamp(360px, 48vw, 560px);
 }
 
 .brush {
@@ -251,9 +240,9 @@
 
 .ticker {
   overflow: hidden;
+  padding: 14px 0;
   background: var(--y);
   color: var(--black);
-  padding: 14px 0;
 }
 
 .track {
@@ -268,7 +257,7 @@
   gap: 22px;
   padding-right: 22px;
   font-family: var(--font-title);
-  font-size: 22px;
+  font-size: clamp(18px, 2vw, 22px);
   letter-spacing: 1px;
   text-transform: uppercase;
   white-space: nowrap;
@@ -375,8 +364,8 @@
 }
 
 .programImg {
-  object-fit: cover;
   z-index: 0;
+  object-fit: cover;
 }
 
 .programIcon,
@@ -398,7 +387,7 @@
 }
 
 .programTitle {
-  font-size: 30px;
+  font-size: clamp(24px, 2.2vw, 30px);
   text-transform: uppercase;
 }
 
@@ -510,65 +499,25 @@
 }
 
 /* ==========================================================
-   LIEUX / PANNEAUX
+   TARIFS
    ========================================================== */
 
-.panels {
-  display: flex;
-  gap: 10px;
-  height: 440px;
-  margin-top: 40px;
+.plans {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-top: 44px;
 }
 
-.panel {
-  position: relative;
-  flex: 1;
+.plan {
   display: flex;
   flex-direction: column;
-  justify-content: flex-end;
-  gap: 8px;
-  padding: 28px;
-  overflow: hidden;
+  padding: 32px 28px;
   background: var(--panel);
-  color: var(--white);
-  text-align: left;
-  transition: flex 0.5s ease;
+  border-top: 3px solid var(--y);
 }
 
-.panelOn {
-  flex: 3;
-}
-
-.panelImg {
-  object-fit: cover;
-  z-index: 0;
-  transition: transform 0.6s ease;
-}
-
-.panelOn .panelImg {
-  transform: scale(1.04);
-}
-
-.panel::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  z-index: 1;
-  background: linear-gradient(
-    to top,
-    rgba(10, 10, 10, 0.92) 5%,
-    rgba(10, 10, 10, 0.25) 70%
-  );
-}
-
-.panelIcon,
-.panelTitle,
-.panelText {
-  position: relative;
-  z-index: 2;
-}
-
-.panelIcon {
+.planIcon {
   display: grid;
   place-items: center;
   width: 46px;
@@ -578,28 +527,62 @@
   font-size: 20px;
 }
 
-.panelTitle {
-  font-family: var(--font-title);
-  font-size: 30px;
+.planName {
+  margin: 20px 0 4px;
+  font-size: clamp(26px, 2.6vw, 32px);
   text-transform: uppercase;
 }
 
-.panelText {
-  max-width: 420px;
-  max-height: 0;
-  overflow: hidden;
-  color: var(--gray-light);
+.planTag {
+  color: var(--muted);
   font-size: 14px;
-  line-height: 1.6;
-  opacity: 0;
-  transition:
-    max-height 0.5s ease,
-    opacity 0.4s ease;
 }
 
-.panelOn .panelText {
-  max-height: 120px;
-  opacity: 1;
+.planPrice {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 4px 8px;
+  margin: 24px 0;
+}
+
+.planPrice strong {
+  color: var(--y);
+  font-family: var(--font-title);
+  font-size: clamp(44px, 4.6vw, 56px);
+  font-weight: 400;
+  line-height: 1;
+}
+
+.planPrice span {
+  color: var(--muted);
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.planList {
+  display: grid;
+  gap: 10px;
+  margin-bottom: 28px;
+  padding: 0;
+  list-style: none;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.planList li {
+  display: flex;
+  gap: 10px;
+}
+
+.planList svg {
+  flex-shrink: 0;
+  margin-top: 4px;
+  color: var(--y);
+}
+
+.planBtn {
+  margin-top: auto;
 }
 
 /* ==========================================================
@@ -610,12 +593,12 @@
   display: grid;
   grid-template-columns: 0.9fr 1.1fr;
   align-items: center;
-  gap: 70px;
+  gap: clamp(40px, 6vw, 70px);
 }
 
 .aboutVisual {
   position: relative;
-  min-height: 520px;
+  min-height: clamp(360px, 42vw, 520px);
 }
 
 .aboutBrush {
@@ -674,6 +657,7 @@
 .round p {
   color: var(--muted);
   font-size: 14px;
+  line-height: 1.6;
 }
 
 .roundNum {
@@ -693,7 +677,7 @@
 
 .roundTitle {
   margin: 16px 0 10px;
-  font-size: 26px;
+  font-size: clamp(22px, 2.2vw, 26px);
 }
 
 /* ==========================================================
@@ -735,7 +719,7 @@
    ========================================================== */
 
 .galleryWrap {
-  padding-bottom: 110px;
+  padding-bottom: clamp(65px, 9vw, 110px);
 }
 
 .gallery {
@@ -754,10 +738,6 @@
 .shotImg {
   object-fit: cover;
   transition: transform 0.5s ease;
-}
-
-.shot:hover .shotImg {
-  transform: scale(1.06);
 }
 
 .shot figcaption {
@@ -798,9 +778,14 @@
   padding: 22px 0;
   background: none;
   color: var(--white);
-  font-size: 17px;
+  font-size: clamp(15px, 1.6vw, 17px);
   font-weight: 600;
   text-align: left;
+  cursor: pointer;
+}
+
+.faqQ:hover {
+  color: var(--y);
 }
 
 .faqQ svg {
@@ -818,6 +803,7 @@
   min-height: 0;
   overflow: hidden;
   color: var(--muted);
+  line-height: 1.65;
 }
 
 .faqOpen .faqA {
@@ -836,31 +822,7 @@
   display: grid;
   grid-template-columns: 0.9fr 1.1fr;
   align-items: start;
-  gap: 60px;
-}
-
-.contactList {
-  display: grid;
-  gap: 14px;
-  margin-top: 28px;
-  padding: 0;
-  list-style: none;
-}
-
-.contactList a {
-  display: inline-flex;
-  align-items: center;
-  gap: 12px;
-  font-weight: 600;
-  transition: color 0.2s ease;
-}
-
-.contactList a:hover {
-  color: var(--y);
-}
-
-.contactList svg {
-  color: var(--y);
+  gap: clamp(36px, 5vw, 60px);
 }
 
 .card {
@@ -873,6 +835,9 @@
 .field {
   display: grid;
   gap: 10px;
+  min-width: 0;
+  margin: 0;
+  padding: 0;
   border: none;
 }
 
@@ -888,7 +853,8 @@
   background: var(--navy);
   border: 1px solid rgba(255, 255, 255, 0.12);
   color: var(--white);
-  font-size: 15px;
+  font: inherit;
+  font-size: 16px; /* évite le zoom automatique sur iPhone */
   resize: vertical;
 }
 
@@ -908,12 +874,14 @@
 }
 
 .chip {
+  min-height: 44px; /* zone tactile confortable */
   padding: 10px 16px;
   background: var(--navy);
   border: 1px solid rgba(255, 255, 255, 0.14);
   color: var(--gray-light);
   font-size: 13px;
   font-weight: 600;
+  cursor: pointer;
   transition:
     background-color 0.2s ease,
     color 0.2s ease,
@@ -947,63 +915,43 @@
 }
 
 /* ==========================================================
-   PIED DE PAGE
-   ========================================================== */
-
-.footer {
-  padding: 40px 0;
-  background: var(--black);
-  border-top: 1px solid rgba(255, 255, 255, 0.08);
-}
-
-.footerGrid {
-  display: grid;
-  grid-template-columns: auto 1fr auto;
-  align-items: center;
-  gap: 32px;
-}
-
-.footerBrand {
-  display: flex;
-  align-items: center;
-  gap: 18px;
-}
-
-.footerBrand img {
-  width: auto;
-  height: 40px;
-}
-
-.footerBrand p {
-  color: var(--muted);
-  font-size: 13px;
-}
-
-.footerLinks {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 8px 24px;
-  padding: 0;
-  list-style: none;
-  font-size: 13px;
-}
-
-.footerLinks a:hover {
-  color: var(--y);
-}
-
-.copy {
-  color: var(--muted);
-  font-size: 12px;
-}
-
-/* ==========================================================
-   BARRE MOBILE
+   BARRE MOBILE (masquée par défaut)
    ========================================================== */
 
 .mobileBar {
   display: none;
+}
+
+/* ==========================================================
+   SURVOL (écrans avec souris uniquement)
+   ========================================================== */
+
+@media (hover: hover) {
+  .btn:hover {
+    background: var(--y-soft);
+    transform: translateY(-3px);
+    box-shadow: 0 12px 30px rgba(140, 255, 31, 0.22);
+  }
+
+  .shot:hover .shotImg {
+    transform: scale(1.06);
+  }
+
+  .program,
+  .plan,
+  .round {
+    transition: transform 0.3s ease;
+  }
+
+  .program:hover,
+  .plan:hover,
+  .round:hover {
+    transform: translateY(-4px);
+  }
+
+  .ticker:hover .track {
+    animation-play-state: paused;
+  }
 }
 
 /* ==========================================================
@@ -1015,22 +963,48 @@
     animation: none;
   }
 
-  .panel,
-  .panelImg,
-  .panelText,
+  .btn,
+  .btn:hover,
+  .program,
+  .plan,
+  .round,
   .faqA,
   .shotImg,
-  .btn {
+  .chip,
+  .playIcon {
     transition: none;
+    transform: none;
   }
 }
 
 /* ==========================================================
-   GRAND ÉCRAN MOYEN
+   TRÈS GRAND ÉCRAN (≥ 1600px)
+   ========================================================== */
+
+@media (min-width: 1600px) {
+  .hero {
+    padding-bottom: 100px;
+  }
+
+  .intro {
+    font-size: 17px;
+  }
+}
+
+/* ==========================================================
+   ≤ 1100px : petit desktop / tablette paysage
    ========================================================== */
 
 @media (max-width: 1100px) {
   .programs {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .plan {
+    padding: 28px 22px;
+  }
+
+  .rounds {
     grid-template-columns: repeat(2, 1fr);
   }
 
@@ -1048,14 +1022,10 @@
 }
 
 /* ==========================================================
-   TABLETTE
+   ≤ 900px : tablette portrait
    ========================================================== */
 
 @media (max-width: 900px) {
-  .section {
-    padding: 80px 0;
-  }
-
   .heroGrid,
   .aboutGrid,
   .bookGrid {
@@ -1065,6 +1035,10 @@
 
   .hero {
     min-height: auto;
+  }
+
+  .heroText {
+    max-width: 640px;
   }
 
   .heroVisual {
@@ -1079,56 +1053,33 @@
     grid-template-columns: 1fr;
   }
 
-  .rounds {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
   .gallery {
     grid-template-columns: repeat(2, 1fr);
   }
 
-  .panels {
-    flex-direction: column;
-    height: auto;
-  }
-
-  .panel {
-    flex: none;
-    height: 110px;
-    transition: height 0.5s ease;
-  }
-
-  .panelOn {
-    flex: none;
-    height: 300px;
-  }
-
-  .footerGrid {
-    grid-template-columns: 1fr;
-    justify-items: start;
-    gap: 22px;
-  }
-
-  .footerLinks {
-    justify-content: flex-start;
-  }
-
+  /* Une seule colonne de formules, centrée et lisible */
   .plans {
     grid-template-columns: 1fr;
+    max-width: 560px;
+    margin-inline: auto;
+  }
+
+  .plan {
+    padding: 32px 28px;
+  }
+
+  .intro {
+    max-width: 100%;
   }
 }
 
 /* ==========================================================
-   MOBILE
+   ≤ 600px : mobile
    ========================================================== */
 
 @media (max-width: 600px) {
   .wrap {
     width: min(100% - 30px, var(--max-width));
-  }
-
-  .section {
-    padding: 65px 0;
   }
 
   .hero {
@@ -1137,12 +1088,13 @@
   }
 
   .heroTitle {
-    font-size: clamp(46px, 15vw, 72px);
+    font-size: clamp(42px, 13.5vw, 68px);
     line-height: 0.95;
   }
 
-  .heroLead {
-    font-size: 15px;
+  .pills li {
+    padding: 7px 12px;
+    font-size: 12px;
   }
 
   .heroActions {
@@ -1158,20 +1110,36 @@
     justify-content: center;
   }
 
-  .heroVisual {
-    min-height: 360px;
-  }
-
+  .heroVisual,
   .aboutVisual {
     min-height: 360px;
   }
 
+  /* Le pinceau déborde moins sur petit écran */
+  .brush {
+    inset: 6% -2% -2% 6%;
+  }
+
+  .aboutBrush {
+    inset: -2% 6% 6% -2%;
+  }
+
   .programs,
-  .perksGrid {
+  .perksGrid,
+  .rounds,
+  .specs {
     grid-template-columns: 1fr;
   }
 
+  .programs,
+  .rounds,
+  .plans,
+  .quotes {
+    margin-top: 32px;
+  }
+
   .perk {
+    padding: 22px 16px;
     border-right: none;
     border-bottom: 1px solid rgba(255, 255, 255, 0.08);
   }
@@ -1180,40 +1148,28 @@
     border-bottom: none;
   }
 
-  .rounds,
-  .specs {
-    grid-template-columns: 1fr;
+  .plan {
+    padding: 28px 22px;
   }
 
-  .gallery {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  .quotes {
-    grid-template-columns: 1fr;
+  .quote {
+    padding: 26px 22px;
   }
 
   .card {
-    padding: 24px 20px;
+    padding: 24px 18px;
   }
 
-  .panels {
-    margin-top: 28px;
+  .chip {
+    flex: 1 1 auto;
+    text-align: center;
   }
 
-  .panel {
-    height: 95px;
-    padding: 20px;
+  .faqQ {
+    padding: 18px 0;
   }
 
-  .panelOn {
-    height: 280px;
-  }
-
-  .panelTitle {
-    font-size: 24px;
-  }
-
+  /* Laisse la place à la barre fixe */
   .page {
     padding-bottom: 76px;
   }
@@ -1222,7 +1178,7 @@
     position: fixed;
     left: 15px;
     right: 15px;
-    bottom: 15px;
+    bottom: calc(15px + env(safe-area-inset-bottom, 0px));
     z-index: 900;
     display: flex;
     align-items: center;
@@ -1233,33 +1189,14 @@
     color: var(--black);
     font-size: 12px;
     font-weight: 800;
+    text-decoration: none;
     text-transform: uppercase;
     box-shadow: 0 10px 35px rgba(0, 0, 0, 0.4);
-  }
-
-  .plans {
-    grid-template-columns: 1fr;
-  }
-
-  .plan {
-    padding: 28px 22px;
-  }
-
-  .planName {
-    font-size: 28px;
-  }
-
-  .planPrice strong {
-    font-size: 48px;
-  }
-
-  .footer {
-    padding-bottom: 100px;
   }
 }
 
 /* ==========================================================
-   TRÈS PETITS ÉCRANS
+   ≤ 400px : très petits écrans
    ========================================================== */
 
 @media (max-width: 400px) {
@@ -1268,11 +1205,7 @@
   }
 
   .heroTitle {
-    font-size: 42px;
-  }
-
-  .title {
-    font-size: 36px;
+    font-size: 40px;
   }
 
   .heroVisual,
@@ -1280,116 +1213,35 @@
     min-height: 320px;
   }
 
-  .tickerItem {
-    font-size: 18px;
-  }
-
-  .programTitle {
-    font-size: 25px;
-  }
-
-  .panelTitle {
-    font-size: 21px;
-  }
-
-  .quote {
-    padding: 24px;
-  }
-
-  .card {
-    padding: 20px 16px;
+  .programBody {
+    padding: 20px 16px 22px;
   }
 
   .plan {
     padding: 24px 18px;
   }
+
+  .quote {
+    padding: 22px 18px;
+  }
+
+  .card {
+    padding: 20px 14px;
+  }
+
+  .mobileBar {
+    left: 12px;
+    right: 12px;
+  }
 }
 
 /* ==========================================================
-   TARIFS
+   PAYSAGE MOBILE (faible hauteur)
    ========================================================== */
 
-.plans {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 16px;
-  margin-top: 44px;
+@media (max-height: 500px) and (orientation: landscape) {
+  .hero {
+    min-height: auto;
+    padding-bottom: 40px;
+  }
 }
-
-.plan {
-  display: flex;
-  flex-direction: column;
-  padding: 32px 28px;
-  background: var(--panel);
-  border-top: 3px solid var(--y);
-}
-
-.planIcon {
-  display: grid;
-  place-items: center;
-  width: 46px;
-  height: 46px;
-  background: var(--y);
-  color: var(--black);
-  font-size: 20px;
-}
-
-.planName {
-  margin: 20px 0 4px;
-  font-size: 32px;
-  text-transform: uppercase;
-}
-
-.planTag {
-  color: var(--muted);
-  font-size: 14px;
-}
-
-.planPrice {
-  display: flex;
-  align-items: baseline;
-  gap: 8px;
-  margin: 24px 0;
-}
-
-.planPrice strong {
-  color: var(--y);
-  font-family: var(--font-title);
-  font-size: 56px;
-  font-weight: 400;
-  line-height: 1;
-}
-
-.planPrice span {
-  color: var(--muted);
-  font-size: 13px;
-  font-weight: 800;
-}
-
-.planList {
-  display: grid;
-  gap: 10px;
-  margin-bottom: 28px;
-  padding: 0;
-  list-style: none;
-  font-size: 14px;
-}
-
-.planList li {
-  display: flex;
-  gap: 10px;
-}
-
-.planList svg {
-  flex-shrink: 0;
-  margin-top: 4px;
-  color: var(--y);
-}
-
-.planBtn {
-  margin-top: auto;
-}
-
-/* ==========================================================
-   FIN
-   ========================================================== */

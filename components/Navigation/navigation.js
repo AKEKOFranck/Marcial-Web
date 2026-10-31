@@ -8,7 +8,7 @@ import styles from "./navigation.module.css";
 /* ===== Données (modifie ici) ===== */
 const site = {
   name: "FlowFit",
-  logo: "/logo-flowfit.png",
+  logo: "/LogoMarcial.png",
   logoFallback: "/logo-flowfit.svg", // utilisé si le PNG est introuvable
   whatsappNumber: "2250703059686", // même numéro que page.js
 };

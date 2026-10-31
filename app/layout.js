@@ -135,12 +135,12 @@ const jsonLd = {
     addressCountry: "CI",
   },
   priceRange: "$$",
-  // telephone: "+225 XX XX XX XX XX",
-  // sameAs: [
-  //   "https://www.instagram.com/TON_COMPTE",
-  //   "https://www.facebook.com/TON_COMPTE",
-  //   "https://www.tiktok.com/@TON_COMPTE",
-  // ],
+   telephone: "+2250703059686",
+   sameAs: [
+     "https://www.instagram.com/invites/contact/?utm_content=z9cvx0d&psln=yankkfv1tlzh",
+    "https://www.facebook.com/Coachmarcial1/",
+    "https://www.tiktok.com/@coachmarcial1",
+   ],
 };
 
 export default function RootLayout({ children }) {

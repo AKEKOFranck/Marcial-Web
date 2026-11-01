@@ -19,6 +19,92 @@
 }
 
 /* ==========================================================
+   ÉCRAN D'INTRO (logo + GO GO GO)
+   ========================================================== */
+
+.splash {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+  background: var(--black);
+  color: var(--white);
+  transition:
+    opacity 0.6s ease,
+    visibility 0.6s ease;
+}
+
+.splashOut {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.splashLogo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  animation: splashPop 0.9s cubic-bezier(0.2, 1.4, 0.4, 1) both;
+}
+
+.splashName {
+  font-family: var(--font-title);
+  font-size: 2.2rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.splashGo {
+  display: flex;
+  gap: 0.75rem;
+  margin: 0;
+  color: var(--y);
+  font-family: var(--font-title);
+  font-size: clamp(2rem, 8vw, 3.5rem);
+  letter-spacing: 0.06em;
+}
+
+.splashGo span {
+  opacity: 0;
+  transform: scale(0.4);
+  animation: splashGo 0.45s cubic-bezier(0.2, 1.5, 0.4, 1) forwards;
+}
+
+.splashGo span:nth-child(1) {
+  animation-delay: 0.9s;
+}
+
+.splashGo span:nth-child(2) {
+  animation-delay: 1.3s;
+}
+
+.splashGo span:nth-child(3) {
+  animation-delay: 1.7s;
+}
+
+@keyframes splashPop {
+  from {
+    opacity: 0;
+    transform: scale(0.5) translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+@keyframes splashGo {
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* ==========================================================
    BOUTONS
    ========================================================== */
 
@@ -499,22 +585,31 @@
 }
 
 /* ==========================================================
-   TARIFS
+   TARIFS (5 formules : 3 en haut, 2 centrées en bas)
    ========================================================== */
 
 .plans {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(6, 1fr);
   gap: 16px;
   margin-top: 44px;
 }
 
 .plan {
+  grid-column: span 2;
   display: flex;
   flex-direction: column;
   padding: 32px 28px;
   background: var(--panel);
   border-top: 3px solid var(--y);
+}
+
+.plan:nth-child(4) {
+  grid-column: 2 / span 2;
+}
+
+.plan:nth-child(5) {
+  grid-column: 4 / span 2;
 }
 
 .planIcon {
@@ -963,6 +1058,12 @@
     animation: none;
   }
 
+  .splashLogo,
+  .splashGo span {
+    animation-duration: 0.01s;
+    animation-delay: 0s;
+  }
+
   .btn,
   .btn:hover,
   .program,
@@ -1000,8 +1101,23 @@
     grid-template-columns: repeat(2, 1fr);
   }
 
-  .plan {
+  /* 2 colonnes : la 5e carte est centrée sur la dernière ligne */
+  .plans {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .plan,
+  .plan:nth-child(4),
+  .plan:nth-child(5) {
+    grid-column: auto;
     padding: 28px 22px;
+  }
+
+  .plan:nth-child(5) {
+    grid-column: 1 / -1;
+    max-width: calc(50% - 8px);
+    justify-self: center;
+    width: 100%;
   }
 
   .rounds {
@@ -1064,7 +1180,12 @@
     margin-inline: auto;
   }
 
-  .plan {
+  .plan,
+  .plan:nth-child(4),
+  .plan:nth-child(5) {
+    grid-column: auto;
+    max-width: none;
+    justify-self: stretch;
     padding: 32px 28px;
   }
 
@@ -1148,7 +1269,9 @@
     border-bottom: none;
   }
 
-  .plan {
+  .plan,
+  .plan:nth-child(4),
+  .plan:nth-child(5) {
     padding: 28px 22px;
   }
 
@@ -1217,7 +1340,9 @@
     padding: 20px 16px 22px;
   }
 
-  .plan {
+  .plan,
+  .plan:nth-child(4),
+  .plan:nth-child(5) {
     padding: 24px 18px;
   }
 

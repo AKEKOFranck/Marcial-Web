@@ -8,6 +8,9 @@ import {
   FaHouse, FaVideo, FaTrophy, FaDumbbell, FaFire, FaHeartPulse, FaBullseye,
   FaPersonRunning, FaChartLine, FaLightbulb, FaClipboardList, FaUserCheck, FaClock,
 } from "react-icons/fa6";
+import { GiWeightLiftingUp, GiRunningShoe } from "react-icons/gi";
+import { FaRunning } from "react-icons/fa";
+
 import styles from "./page.module.css";
 
 /* ==========================================================
@@ -18,6 +21,7 @@ import styles from "./page.module.css";
 const site = {
   name: "FlowFit",
   coach: "Coach Marcial",
+  logo: "/LogoMarcial.png", // mets ton logo dans /public (si absent, seul le nom s'affiche)
   whatsappNumber: "2250703059686", // format international, sans + ni espaces (jamais affiché)
 };
 
@@ -27,19 +31,21 @@ const waLink = (text) =>
 const hero = {
   titleLines: ["Ton objectif,", "notre mission"],
   subtitle: "Avec Coach Marcial",
-  text: "Des séances à domicile ou en ligne, construites autour de ton objectif et de ton rythme. Entraîne-toi où tu veux, quand tu veux.",
+  text: "Des séances à domicile, en ligne, en salle ou en plein air, construites autour de ton objectif et de ton rythme. Entraîne-toi où tu veux, quand tu veux.",
   cta: "Commencer maintenant",
   secondary: "Voir la méthode",
   pills: [
     { icon: FaHouse, label: "Séances à domicile" },
     { icon: FaVideo, label: "Séances vidéo en ligne" },
+    { icon: GiWeightLiftingUp, label: "Séances en salle" },
+    { icon: FaRunning, label: "Séances en plein air" },
     { icon: FaTrophy, label: "Résultats concrets" },
   ],
   image: "/main.jpg",
   imageAlt: "Coach Marcial en séance d'entraînement",
 };
 
-const ticker = ["Cardio", "Abdos", "Perte de poids", "Prise de masse", "À domicile", "En ligne"];
+const ticker = ["Cardio", "Abdos", "Perte de poids", "Prise de masse", "À domicile", "En ligne", "En salle", "En plein air"];
 
 /* ⚠️ Chiffres d'exemple : remplace par les vrais */
 const stats = [
@@ -58,7 +64,7 @@ const perks = [
 /* Les 4 programmes de l'affiche (id = valeur envoyée dans le formulaire) */
 const programs = [
   {
-    id: "Cardio", icon: FaHeartPulse, image: "/images/cardio.jpg", duration: "30 min",
+    id: "Cardio", icon: FaHeartPulse, image: "/cardio.png", duration: "30 min",
     tagline: "Brûle les calories, booste ton énergie",
     why: ["Améliore ton endurance", "Brûle un maximum de calories", "Booste ton énergie et ton moral"],
     exercises: [
@@ -70,7 +76,7 @@ const programs = [
     tip: "Garde un rythme soutenu et hydrate-toi bien.",
   },
   {
-    id: "Abdos", icon: FaBullseye, image: "/images/abdos.jpg", duration: "20 min",
+    id: "Abdos", icon: FaBullseye, image: "/abdos.png", duration: "20 min",
     tagline: "Un ventre plat et un corps plus fort",
     why: ["Renforce la sangle abdominale", "Améliore ta posture", "Protège ton dos"],
     exercises: [
@@ -82,7 +88,7 @@ const programs = [
     tip: "Contracte bien tes abdos et garde le dos au sol.",
   },
   {
-    id: "Perte de poids", icon: FaFire, image: "/images/perte-de-poids.jpg", duration: "45 min",
+    id: "Perte de poids", icon: FaFire, image: "/perte-de-poids.png", duration: "45 min",
     tagline: "Élimine les graisses, retrouve ta forme",
     why: ["Augmente la dépense calorique", "Affine ta silhouette", "Améliore ta condition physique"],
     exercises: [
@@ -94,7 +100,7 @@ const programs = [
     tip: "Sois régulier, mange équilibré et bois beaucoup d'eau.",
   },
   {
-    id: "Prise de masse", icon: FaDumbbell, image: "/images/prise-de-masse.jpg", duration: "45 min",
+    id: "Prise de masse", icon: FaDumbbell, image: "/prise-de-masse.png", duration: "45 min",
     tagline: "Gagne en muscle et en force",
     why: ["Développe la masse musculaire", "Augmente ta force", "Améliore ta silhouette et ta confiance"],
     exercises: [
@@ -103,7 +109,7 @@ const programs = [
       { name: "Tractions (ou tirage)", dose: "4 × 8" },
       { name: "Curl biceps", dose: "4 × 12" },
     ],
-    tip: "Augmente progressivement les charges et mange assez de protéines. Haltères ou bande élastique suffisent pour démarrer.",
+    tip: "Augmente progressivement les charges et mange assez de protéines. Des haltères ou une bande élastique suffisent pour démarrer.",
   },
 ];
 
@@ -118,6 +124,10 @@ const plans = [
   {
     name: "Accompagnement", icon: FaUserCheck, tag: "Séances en appel vidéo", price: "50 000",
     features: ["Séances en direct avec Coach Marcial", "Suivi, motivation et conseils", "Programme ajusté selon tes progrès"],
+  },
+  {
+    name: "Performance", icon: GiWeightLiftingUp, tag: "Séances en plein air et en salle", price: "60 000",
+    features: ["Séances en plein air et en salle avec Coach Marcial", "Suivi personnalisé et conseils", "Programme ajusté selon tes progrès"],
   },
   {
     name: "Premium", icon: FaHouse, tag: "Coaching à domicile", price: "100 000",
@@ -138,7 +148,7 @@ const about = {
 const steps = [
   { title: "Premier message", icon: FaWhatsapp, text: "Tu m'écris sur WhatsApp et on parle de ton objectif." },
   { title: "Séance découverte", icon: FaCalendarCheck, text: "On fait le point sur ton niveau et on fixe un plan." },
-  { title: "Entraînement", icon: FaPersonRunning, text: "À domicile ou en ligne, des séances adaptées à ton rythme." },
+  { title: "Entraînement", icon: FaPersonRunning, text: "À domicile, en ligne, en salle ou en plein air, des séances adaptées à ton rythme." },
   { title: "Résultats", icon: FaChartLine, text: "On mesure tes progrès et on ajuste le programme." },
 ];
 
@@ -146,7 +156,7 @@ const steps = [
 const testimonials = [
   { text: "En trois mois, j'ai perdu 8 kg et repris confiance en moi.", author: "Aïcha, 29 ans" },
   { text: "Des séances variées et un vrai suivi. Je recommande à 100 %.", author: "Koffi, 34 ans" },
-  { text: "Je n'avais jamais fait de sport. Aujourd'hui je ne m'en passe plus.", author: "Mariam, 41 ans" },
+  { text: "Je n'avais jamais fait de sport. Aujourd'hui, je ne m'en passe plus.", author: "Mariam, 41 ans" },
 ];
 
 const gallery = [
@@ -160,7 +170,7 @@ const faq = [
   { q: "Je n'ai jamais fait de sport, est-ce pour moi ?", a: "Oui. Chaque programme part de ton niveau actuel, quel qu'il soit." },
   { q: "Faut-il du matériel ?", a: "Pas pour le cardio et les abdos. Pour la prise de masse, des haltères ou une bande élastique suffisent pour commencer." },
   { q: "Comment se passent les séances en ligne ?", a: "Avec la formule Simple, tu suis des vidéos de séances à ton rythme. Avec Accompagnement, on fait la séance ensemble en appel vidéo." },
-  { q: "Quelle formule choisir ?", a: "Simple si tu t'entraînes en autonomie, Accompagnement pour un suivi en direct, Premium si tu veux que je vienne chez toi." },
+  { q: "Quelle formule choisir ?", a: "Simple si tu t'entraînes en autonomie, Accompagnement ou Pro pour un suivi en direct, Performance pour t'entraîner en salle et en plein air, Premium si tu veux que je vienne chez toi." },
   { q: "Combien de séances par semaine ?", a: "En général 2 à 3, selon ton objectif et ta disponibilité." },
   { q: "Comment réserver ?", a: "Remplis le formulaire : ta demande arrive directement sur mon WhatsApp." },
 ];
@@ -177,6 +187,54 @@ const bookingForm = {
 /* ==========================================================
    COMPOSANTS
 ========================================================== */
+
+/* Écran d'intro façon application : logo + « GO GO GO » */
+function Splash() {
+  const [phase, setPhase] = useState("in"); // in -> out -> gone
+  const [logoOk, setLogoOk] = useState(true);
+
+  useEffect(() => {
+    document.body.style.overflow = "hidden";
+    const t1 = setTimeout(() => setPhase("out"), 2600);
+    const t2 = setTimeout(() => {
+      setPhase("gone");
+      document.body.style.overflow = "";
+    }, 3200);
+    return () => {
+      clearTimeout(t1);
+      clearTimeout(t2);
+      document.body.style.overflow = "";
+    };
+  }, []);
+
+  if (phase === "gone") return null;
+
+  return (
+    <div
+      className={`${styles.splash} ${phase === "out" ? styles.splashOut : ""}`}
+      aria-hidden="true"
+    >
+      <div className={styles.splashLogo}>
+        {logoOk && (
+          <Image
+            src={site.logo}
+            alt=""
+            width={130}
+            height={130}
+            priority
+            onError={() => setLogoOk(false)}
+          />
+        )}
+        <span className={styles.splashName}>{site.name}</span>
+      </div>
+      <p className={styles.splashGo}>
+        <span>GO</span>
+        <span>GO</span>
+        <span>GO</span>
+      </p>
+    </div>
+  );
+}
 
 /* Image optimisée (mode fill) : le parent doit être en position: relative + hauteur.
    Se masque proprement si le fichier n'existe pas encore. */
@@ -280,7 +338,7 @@ export default function Home() {
     const lines = [
       `Bonjour ${site.coach}, je souhaite réserver une séance.`,
       "",
-      `Nom : ${form.name.trim()}`,
+      `Prénom : ${form.name.trim()}`,
       `Programme : ${form.objective}`,
       `Formule : ${form.plan} (${plans.find((p) => p.name === form.plan)?.price} ${pricing.currency})`,
       form.slot ? `Disponibilité : ${form.slot}` : null,
@@ -293,6 +351,8 @@ export default function Home() {
 
   return (
     <main className={styles.page}>
+      <Splash />
+
       {/* ===== Accueil ===== */}
       <section id="accueil" className={styles.hero}>
         <div className={`${styles.wrap} ${styles.heroGrid}`}>
@@ -521,7 +581,7 @@ export default function Home() {
         <div className={styles.wrap}>
           <h2 className={styles.title}>Comment ça se passe ?</h2>
           <p className={styles.intro}>
-            Jamais travaillé avec un coach ? Voici les quatre rounds, du premier message aux résultats.
+            Tu n'as jamais travaillé avec un coach ? Voici les quatre rounds, du premier message aux résultats.
           </p>
           <ol className={styles.rounds}>
             {steps.map((s, i) => {
